@@ -1,0 +1,63 @@
+Creating our First url and rendering with response:
+--------------------------------------------------
+
+step 1: activate virtual environment
+
+step 2: create a new project in main folder
+
+	ex: django-admin startproject pro23[ProjectName]
+
+
+step 3:  open the project inside vscode 
+
+step 4: create a new  file ie views.py inside the project directory.
+
+	Pro23
+	------
+		|--->Pro23:
+		------------		
+			|---> __init__.py
+			|---> settings.py
+			|---> asgi.py
+			|---> wsgi.py
+			 |---> urls.py
+			|---> views.py
+		|---> manage.py
+
+step 5: open views.py create a function and that function carries request as arguement and returns HttpResponse object
+
+from django.http import HttpResponse
+
+def v1(request):
+    data="<h1 style='color : red'>Hello This is My First Response</h1>"
+    return HttpResponse(data)
+
+step 6: created view need to connected to particular url so we need to go urls.py file 
+and create a new url pattern
+
+step 7: create a new path object inside urlpatterns list
+
+	path('pattern',functionName)
+
+pattern --> what user is request
+
+functionName --> for that user request what server is responding.
+
+
+step 8: we create new path with our pattern and function
+note :n before using any views.py function we must import
+
+
+from django.contrib import admin
+from django.urls import path
+from .views import v1
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('home/',v1),
+]
+
+
+step 9: run the server and send the request with pattern so server will send response back.
+
+	python manage.py runserver
